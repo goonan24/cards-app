@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import '@lrnwebcomponents/meme-maker/meme-maker.js'; 
-
+import '@lrnwebcompents/cardz-app@^7.0.18';
 
 const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
@@ -10,7 +10,7 @@ class CardsApp extends LitElement {
   }
 
   static styles = css`
-   :host {
+    :host {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -21,108 +21,36 @@ class CardsApp extends LitElement {
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
-      background-color: var(--my-cardz-background-color);
+      background-color: var(--tem-plate-background-color);
     }
 
-    .btn-wrapper header{
-      font-size: 35px; 
-      color: Blue;
-      margin: 1px;
+    main {
+      flex-grow: 1;
     }
-    
-    .btn-wrapper {
-      margin: 24px auto;
-      padding: 20px;
-      border: 30px solid black; 
-    }
-    /*
-    .btn-wrapper button {
-      font-size: 15px;
-      color: white;
-      background-color: blue;
-      margin-left: 1px;
-      margin-top: 1px;
-      padding: 1px;
-      position: relative;
-      top: 20px;
-      left: -400px;
-    }
-    */
 
-    .btn-wrapper QBB{
-      font-size: 15px;
-      color: white;
-      background-color: blue;
-      margin-left: 1px;
-      margin-top: 1px;
-      padding: 1px;
-      position: relative;
-      top: 20px;
-      left: 1000px;
+    .logo {
+      margin-top: 36px;
+      animation: app-logo-spin infinite 20s linear;
     }
-    .btn-wrapper MLBB{
-      font-size: 15px;
-      color: white;
-      background-color: blue;
-      margin-left: 1px;
-      margin-top: 1px;
-      padding: 1px;
-      position: relative;
-      top: 20px;
-      left: 500px;
-    }
-    
-    .btn-wrapper textarea{
-      color: white;
-      font-size: 14px;
-      margin-left: 1px;
-      margin-top: 0px;
-      background-color: blue;
-      height: 175px;
-      width: 250px;
-    }
-    .btn-wrapper QB Pic{
-      margin-left: 1px;
-      margin-top: 1px;
-      padding-top: 1px;
-      height: 50px;
-      width: 25px;
-      
-    }
-    .btn-wrapper Linebacker Pic{
-      margin-left: 1px;
-      margin-top: 50px;
-      padding-top: 100px;
-    }
-    @media only screen and (max-width: 800px) {
-      body {
-        background-color: lightblue;
+
+    @keyframes app-logo-spin {
+      from {
+        transform: rotate(0deg);
       }
-    }
-    @media only screen and (max-width: 500px) {
-      body {
-        scale: button; 
-        scale: Linebacker Pic;
-        scale: QB Pic;
+      to {
+        transform: rotate(360deg);
       }
     }
 
-    .QB{
-      height: 150px;
-      width: 200px;
-      
+    .app-footer {
+      font-size: calc(12px + 0.5vmin);
+      align-items: center;
     }
-    .LB{
-      height: 200px;
-      width: 200px;
+
+    .app-footer a {
+      margin-left: 5px;
     }
-    meme-maker {
-      --meme-maker-font-size: 18px;
-      --meme-maker-font-size-medium: 20px;
-      --meme-maker-font-size-small: 15px;
-      width: 200px;
-    }
-  ;`
+  `;
 
   constructor() {
     super();
@@ -132,30 +60,18 @@ class CardsApp extends LitElement {
   render() {
     return html`
       <main>
-        <div class="btn-wrapper">
-          <header id="header">Penn State Football</header>
-          <textarea>these buttons will send you to the personal page for the starting quarterback and main linebacker for the Penn State Football team. The Quarter back is the top image and the Middle Line Backer is the bottom Image. Click on the botton now to find out more information.</textarea>
-          <img class="QB" src="https://www.statecollege.com/wp-content/uploads/2023/09/BURDICK-Delaware-Allar-throw-1st-half-scaled.jpg" alt="QB Pic"></img>
-          <img class="LB" src="https://media.gettyimages.com/id/1244435446/es/foto/penn-state-linebacker-abdul-carter-reads-the-play-during-the-ohio-state-buckeyes-versus-penn.jpg?s=1024x1024&w=gi&k=20&c=FMTrLWUDVFD4tlL3lTye07SIdHsFU_05SXkmsJFTwIM=" alt="Linebacker Pic"></img>
-          <a href="https://gopsusports.com/sports/football/roster/drew-allar/13992">
-            <button id="QBB">Quarterbackdetails</button>
-          </a>
-          <a href="https://gopsusports.com/sports/football/roster/abdul-carter/13999">
-          <button id="MLBB">Middle Line Backer</button>
-          </a>
-        </div>
+        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
+        <h1>${this.header}</h1>
 
-        <div class="duplicate-card">
-          <button id="dup"> duplicate</button>
-          <script>
-            document.querySelector("#dup").addEventListener("click", (e) => {
-              let p = document.getElementById("btn-wrapper");
-              let d = p.cloneNode(true);
-              document.body.appendChild(d);
-          });
-          </script>
-        </div>
-        <meme-maker alt="We want You" image-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBjKdnmJNSW55AmPppdi_yuUu-66al-w0NDQ&usqp=CAU" top-text="We want You" bottom-text="to Root of PSU Football"></meme-maker>
+        <p>Edit <code>src/TemPlate.js</code> and save to reload.</p>
+        <a
+          class="app-link"
+          href="https://open-wc.org/guides/developing-components/code-examples/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Code examples
+        </a>
       </main>
 
       <p class="app-footer">
@@ -171,4 +87,4 @@ class CardsApp extends LitElement {
   }
 }
 
-customElements.define('my-cardz', MyCardz);
+customElements.define('tem-plate', TemPlate);
